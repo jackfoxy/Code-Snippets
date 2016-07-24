@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>INSERT </Title>
+      <Description>SQL Cmd Template INSERT </Description>
+      <Author>Jack Fox</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>param1</ID>
+          <ToolTip>INSERT</ToolTip>
+          <Default>main</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="fsharp">
+        <![CDATA[
+    [<Literal>]
+    let sql<tbl name> = 
+        @"INSERT INTO " + tb<tbl name> + @"
+            ([assetID], [assetTypeID], [userID], [createDvcTm], [<tbl name>TopicID], [note], [createdUserID], [updateUserID], [createdTmsp], [lastUpdateTmsp])
+        VALUES (@assetID, @assetTypeID, @userID, @createDvcTm, @<tbl name>TopicID, @note, @userID2, @userID3, GETUTCDATE(), GETUTCDATE())"
+
+    type Query<tbl name> = SqlCommand<sql<tbl name>, ConnectionStringName="dbElephant">
+
+    let <tbl name> assetID assetTypeID userID createDvcTm <tbl name>TopicID note =
+        let cmd = Query<tbl name>()
+        cmd.Execute(assetID = assetID, assetTypeID = assetTypeID, userID = userID, userID2 = userID, userID3 = userID, createDvcTm = createDvcTm, <tbl name>TopicID = <tbl name>TopicID, note = note)
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>AddPrinter</Title>
+      <Shortcut></Shortcut>
+      <Description>AddPrinter</Description>
+      <Author>Jack Fox</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Code Language="fsharp">
+#r "MathNet.Numerics.dll"
+#r "MathNet.Numerics.FSharp.dll"
+
+open MathNet.Numerics
+open MathNet.Numerics.LinearAlgebra
+
+fsi.AddPrinter(fun (matrix:Matrix<float>) -> matrix.ToString())</Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

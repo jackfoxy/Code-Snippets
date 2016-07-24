@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>fsx helper</Title>
+      <Description>Code snippet for fsx helper</Description>
+      <Author>Jack Fox</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>param1</ID>
+          <ToolTip>fsx helper</ToolTip>
+          <Default>fsx</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="fsharp">
+        <![CDATA[
+#if INTERACTIVE
+//    #r "file.dll";;        Reference (dynamically load) the given DLL
+//    #I "<folder-list>;;    Add the given search folder(s) for referenced DLLs
+//    #load "file.fs" ...;;  Load the given file(s) as if compiled and referenced
+//    #time ["on"|"off""];;  Toggle timing on/off
+//    #help;;                Display help
+//    #quit;;                Exit
+//    fsi path by default C:\Users\Jack\AppData\Local\Temp\
+#I __SOURCE_DIRECTORY__, "C:\Packages", E:\Dropbox\VisualStudio\Scripts\packages"
+//#load @"C:\FsEye\FsEye.fsx"
+//#I "C:\Packages" 
+//#I "E:\Dropbox\VisualStudio\Scripts\packages" 
+#r @"FSharpx.Core.1.8.41\lib\40\FSharpx.Core.dll"
+#r "System.Xml.Linq.dll"
+#r @"FSharp.Data.1.1.10\lib\net40\FSharp.Data.dll"
+#endif
+
+open System
+open System.Reflection
+open FSharpx
+open FSharpx.Collections
+open FSharp.Data
+    ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

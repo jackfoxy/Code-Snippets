@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>SELECT JOIN</Title>
+      <Description>SQL Cmd Template SELECT JOIN</Description>
+      <Author>Jack Fox</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>param1</ID>
+          <ToolTip>SELECT JOIN</ToolTip>
+          <Default>main</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="fsharp">
+        <![CDATA[
+    [<Literal>]
+    let sql<tbl name> = 
+        @"SELECT <tbl name>ID
+		FROM " + tb<tbl name> + " AME WITH (NOLOCK)
+		JOIN " + tbAssetMeasureType + " AMT WITH (NOLOCK) on AME.assetMeasureTypeID = AMT.assetMeasureTypeID
+		JOIN " + tbAssetType + " AT WITH (NOLOCK) on AMT.assetTypeID = AT.assetTypeID
+        WHERE companyID = @companyID
+		AND AME.lastUpdateTmsp > @tmsp"
+
+    type Query<tbl name> = SqlCommand<sql<tbl name>, ConnectionStringName="dbElephant">
+
+    let <tbl name> companyID tmsp =
+        let cmd = Query<tbl name>()
+        cmd.Execute(companyID = companyID, tmsp = tmsp)
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

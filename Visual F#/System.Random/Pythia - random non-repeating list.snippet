@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Pythia - random non-repeating list</Title>
+      <Description>Code snippet for F# Pythia - random non-repeating list</Description>
+      <Author>Jack Fox</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>Pythia - random non-repeating list</ID>
+          <ToolTip>Pythia - random non-repeating list</ToolTip>
+          <Default>Pythia - random non-repeating list</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="fsharp">
+        <![CDATA[type Pythia = private | Results of int list with
+//https://www.reddit.com/r/ProgrammerHumor/comments/4sv6qr/true_random_number_generator/
+//a neat trick for generating random, non-repeating numbers:
+//0. Set a 64 bit counter to 0
+//1. Generate a DES key
+//2. To generate a number call encrypt(key, counter++), using DES in ECB mode
+
+    static member Create() = Results []
+    
+    member p.Generate() =
+        let (Results r) = p
+        let maxRand = double(System.Int32.MaxValue)
+        let rec aux () =
+            let mynum = int(System.Random().NextDouble() * maxRand)
+            if r |> List.exists ((=) mynum) then aux ()
+            else
+                mynum, Results(mynum :: r)
+
+        aux ()]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

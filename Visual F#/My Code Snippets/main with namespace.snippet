@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>main with namespace</Title>
+      <Description>Code snippet for F# app main</Description>
+      <Author>Jack Fox</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>param1</ID>
+          <ToolTip>main function name</ToolTip>
+          <Default>main</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="fsharp">
+        <![CDATA[namespace MyNameSpace
+
+module console1 =
+    [<EntryPoint>]
+    let $param1$ argv = 
+        printfn "%A" argv
+
+        printfn "Hit any key to exit."
+        System.Console.ReadKey() |> ignore
+        0]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
